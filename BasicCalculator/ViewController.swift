@@ -13,69 +13,32 @@ class ViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     var result: Float = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
-    
-    
-    @IBAction func addition(_ sender: Any) {
-        if let numberOne = Float(firstNumber.text!){
-            if let numberTwo = Float(secondNumber.text!){
-                result = numberOne + numberTwo
-                resultLabel.text = String(result)
-            } else {
-                resultLabel.text = "Please give me a NUMBER"
-            }
-        } else {
-            resultLabel.text = "Please give me a NUMBER"
+    @IBAction func performOperation(_ sender: UIButton) {
+        guard let numberOne = Float(firstNumber.text!),
+              let numberTwo = Float(secondNumber.text!) else {
+            resultLabel.text = "Please give me just a NUMBER"
+            return
         }
-    }
-    
-
-    @IBAction func subtraction(_ sender: Any) {
-        if let numberOne = Float(firstNumber.text!){
-            if let numberTwo = Float(secondNumber.text!){
-                result = numberOne - numberTwo
-                resultLabel.text = String(result)
-            } else {
-                resultLabel.text = "Please give me a NUMBER"
-            }
-        } else {
-            resultLabel.text = "Please give me a NUMBER"
+        
+        switch sender.tag {
+        case 1: // Addition
+            result = numberOne + numberTwo
+        case 2: // Subtraction
+            result = numberOne - numberTwo
+        case 3: // Multiplication
+            result = numberOne * numberTwo
+        case 4: // Division
+            result = numberOne / numberTwo
+        default:
+            break
         }
+        
+        resultLabel.text = String(result)
     }
-    
-    
-    @IBAction func multiplication(_ sender: Any) {
-        if let numberOne = Float(firstNumber.text!){
-            if let numberTwo = Float(secondNumber.text!){
-                result = numberOne * numberTwo
-                resultLabel.text = String(result)
-            } else {
-                resultLabel.text = "Please give me a NUMBER"
-            }
-        } else {
-            resultLabel.text = "Please give me a NUMBER"
-        }
-    }
-    
-    
-    @IBAction func division(_ sender: Any) {
-        if let numberOne = Float(firstNumber.text!){
-            if let numberTwo = Float(secondNumber.text!){
-                result = numberOne / numberTwo
-                resultLabel.text = String(result)
-            } else {
-                resultLabel.text = "Please give me a NUMBER"
-            }
-        } else {
-            resultLabel.text = "Please give me a NUMBER"
-        }
-    }
-    
     
 }
-
